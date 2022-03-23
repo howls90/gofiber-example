@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/src
+    working_dir: /src
+    ports:
+      - 3000:3000
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+    environment:
+      POSTGRES_USER: gorm
+      POSTGRES_PASSWORD: gorm
+      POSTGRES_DATABASE: gorm
+    logging:
+      driver: "none"
+
+  redis:
+    image: "redis:latest"
+    volumes:
+      - "./tmp/redis:/data"
+    logging:
+      driver: "none"

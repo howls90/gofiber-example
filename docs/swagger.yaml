@@ -1,0 +1,95 @@
+basePath: /
+definitions:
+  posts.Post:
+    properties:
+      id:
+        type: string
+      subtitle:
+        type: string
+      text:
+        type: string
+      title:
+        type: string
+    required:
+    - subtitle
+    - text
+    - title
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: This is a sample swagger for Fiber
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fiber Example API
+  version: "1.0"
+paths:
+  /api/v1/posts:
+    get:
+      consumes:
+      - application/json
+      description: get all posts
+      produces:
+      - application/json
+      summary: Get posts
+      tags:
+      - Posts
+    post:
+      consumes:
+      - application/json
+      description: Create post
+      parameters:
+      - description: Title
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      - description: Subtitle
+        in: body
+        name: subtitle
+        required: true
+        schema:
+          type: string
+      - description: Text
+        in: body
+        name: text
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/posts.Post'
+      summary: Create Post
+      tags:
+      - Posts
+  /api/v1/posts/{postId}:
+    get:
+      consumes:
+      - application/json
+      description: Get post by Id
+      parameters:
+      - description: Post Id
+        in: path
+        name: postId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/posts.Post'
+      summary: Show post
+      tags:
+      - Posts
+swagger: "2.0"

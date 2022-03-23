@@ -1,0 +1,29 @@
+@contentType = application/json
+@host = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZW1haWwiOiJzZGZkc2ZkcyIsImV4cCI6MTY0ODI1NjY1NH0.-f6dnDPl3EmR7oza31LST6Hgs150ikyfbn4ppvdSW-4
+
+POST {{host}}/auth/login HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "email": "sdfdsfds",
+    "password": "123"
+}
+###
+
+GET {{host}}/api/v1/posts HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+
+###
+
+POST {{host}}/api/v1/posts HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+{
+    "title": "sdfdsfds",
+    "subtitle": "123",
+    "text": "sdfdsfds"
+}
